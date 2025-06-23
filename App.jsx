@@ -1,0 +1,1 @@
+import React from 'react'; import Header from './components/Header'; import Footer from './components/Footer'; const App = () => (<div><Header /><main>Welcome to Fymo Tools</main><Footer /></div>); export default App;
