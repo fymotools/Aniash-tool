@@ -1,0 +1,1 @@
+import React from 'react'; const Footer = () => (<footer>© 2025 Fymo Tools | Contact: fymotools@gmail.com</footer>); export default Footer;
