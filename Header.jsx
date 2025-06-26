@@ -1,37 +1,41 @@
-// src/components/Header.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
-function Header() {
+const Header = () => {
+  const { language, toggleLanguage } = useLanguage();
+
+  const navItems = {
+    en: ["Home", "Tools", "Blog", "Donate", "Contact", "About"],
+    es: ["Inicio", "Herramientas", "Blog", "Donar", "Contacto", "Sobre"],
+  };
+
+  const links = ["/", "/health-tools", "/blog", "/donate", "/contact", "/about"];
+
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="container mx-auto flex items-center justify-between p-4">
-        {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2">
-          <img src="/logo.png" alt="Fymo Logo" className="h-10 w-10" />
-          <span className="text-xl font-bold text-gray-800">Fymo Tools</span>
-        </Link>
+    <header className="bg-indigo-700 text-white shadow-md">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
+        <h1 className="text-xl font-bold">
+          <Link to="/">Fymo Tools</Link>
+        </h1>
 
-        {/* Navigation Links */}
-        <nav className="space-x-4 hidden md:block">
-          <Link to="/" className="text-gray-600 hover:text-blue-600">Home</Link>
-          <Link to="/tax-tools" className="text-gray-600 hover:text-blue-600">Tax</Link>
-          <Link to="/health-tools" className="text-gray-600 hover:text-blue-600">Health</Link>
-          <Link to="/writing-tools" className="text-gray-600 hover:text-blue-600">Writing</Link>
-          <Link to="/seo-tools" className="text-gray-600 hover:text-blue-600">SEO</Link>
-          <Link to="/image-tools" className="text-gray-600 hover:text-blue-600">Image</Link>
-          <Link to="/daily-tools" className="text-gray-600 hover:text-blue-600">Daily</Link>
-          <Link to="/blog" className="text-gray-600 hover:text-blue-600">Blog</Link>
-          <Link to="/donate" className="text-gray-600 hover:text-green-600 font-semibold">Donate</Link>
+        <nav className="hidden md:flex gap-4 text-sm">
+          {navItems[language].map((item, i) => (
+            <Link key={i} to={links[i]} className="hover:underline">
+              {item}
+            </Link>
+          ))}
         </nav>
 
-        {/* Language Toggle Placeholder */}
-        <div className="text-sm text-gray-600">
-          <span className="cursor-pointer">EN</span> / <span className="cursor-pointer">ES</span>
-        </div>
+        <button
+          onClick={toggleLanguage}
+          className="bg-white text-indigo-700 px-2 py-1 rounded text-sm"
+        >
+          {language === "en" ? "ES" : "EN"}
+        </button>
       </div>
     </header>
   );
-}
+};
 
 export default Header;
