@@ -1,68 +1,73 @@
 import React, { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const { language } = useLanguage();
+  const [copied, setCopied] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleCopy = () => {
+    navigator.clipboard.writeText("fymotools@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Thank you! Your message has been received.");
-    setFormData({ name: "", email: "", message: "" });
+  const content = {
+    en: {
+      title: "Contact Us",
+      emailLabel: "Email:",
+      whatsappLabel: "WhatsApp Chat:",
+      note: "Feel free to contact us for any suggestions, issues or collaborations.",
+      copied: "Email copied to clipboard ✅",
+    },
+    es: {
+      title: "Contáctanos",
+      emailLabel: "Correo electrónico:",
+      whatsappLabel: "Chat de WhatsApp:",
+      note: "No dudes en contactarnos para sugerencias, problemas o colaboraciones.",
+      copied: "Correo copiado al portapapeles ✅",
+    },
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center text-indigo-700">Contact Us</h1>
+    <div className="max-w-2xl mx-auto p-6">
+      <h1 className="text-3xl font-bold text-indigo-700 mb-4 text-center">
+        {content[language].title}
+      </h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-2xl shadow-lg border">
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-lg focus:outline-none focus:ring"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-lg focus:outline-none focus:ring"
-          required
-        />
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          rows="5"
-          value={formData.message}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-lg focus:outline-none focus:ring"
-          required
-        ></textarea>
-        <button
-          type="submit"
-          className="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 transition"
-        >
-          Send Message
-        </button>
-      </form>
+      <p className="text-gray-600 mb-6 text-center">{content[language].note}</p>
 
-      <div className="mt-10 text-center">
-        <h2 className="text-lg font-semibold mb-2">📧 Email us directly:</h2>
-        <p className="text-indigo-600 font-medium">fymotools@gmail.com</p>
-      </div>
+      <div className="bg-white shadow-xl rounded-2xl p-6 space-y-6 border">
+        {/* Email */}
+        <div>
+          <h2 className="text-lg font-semibold text-gray-800">{content[language].emailLabel}</h2>
+          <p className="text-indigo-600 font-medium">
+            fymotools@gmail.com
+            <button
+              onClick={handleCopy}
+              className="ml-2 text-sm text-blue-600 hover:underline"
+            >
+              Copy
+            </button>
+          </p>
+          {copied && (
+            <p className="text-green-600 text-sm mt-1 animate-bounce">
+              {content[language].copied}
+            </p>
+          )}
+        </div>
 
-      <div className="mt-8 flex justify-center space-x-6 text-gray-600 text-xl">
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">📘</a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">🐦</a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">▶️</a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">📷</a>
+        {/* WhatsApp */}
+        <div>
+          <h2 className="text-lg font-semibold text-gray-800">{content[language].whatsappLabel}</h2>
+          <a
+            href="https://wa.me/923027129449"
+            target="_blank"
+            rel="Emmanueil Masih"
+            className="text-blue-600 underline"
+          >
+            +92 302 7129449
+          </a>
+        </div>
       </div>
     </div>
   );
