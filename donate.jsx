@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Donate = () => {
+  const [copied, setCopied] = useState("");
+
+  const copyToClipboard = (text, label) => {
+    navigator.clipboard.writeText(text);
+    setCopied(label);
+    setTimeout(() => setCopied(""), 2000);
+  };
+
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4 text-center text-indigo-700">
+      <h1 className="text-3xl font-bold mb-4 text-center text-indigo-700 animate-pulse">
         Support Fymo Tools 💖
       </h1>
 
@@ -14,21 +22,51 @@ const Donate = () => {
       <div className="bg-white shadow-xl rounded-2xl p-6 space-y-6 border">
         <div>
           <h2 className="text-xl font-semibold text-gray-800">📱 Donate via JazzCash</h2>
-          <p className="mt-2 text-gray-700">Number: <span className="font-medium">+92 302 7129449</span></p>
+          <p className="mt-2 text-gray-700">
+            Number: <span className="font-medium">+92 302 7129449</span>
+            <button
+              onClick={() => copyToClipboard("+92 302 7129449", "JazzCash")}
+              className="ml-2 text-sm text-blue-600 hover:underline"
+            >
+              Copy
+            </button>
+          </p>
           <p className="text-gray-500 text-sm">Use mobile transfer or QR in your JazzCash app.</p>
         </div>
 
         <div>
           <h2 className="text-xl font-semibold text-gray-800">💸 Donate via Easypaisa</h2>
-          <p className="mt-2 text-gray-700">Number: <span className="font-medium">923448292001</span></p>
+          <p className="mt-2 text-gray-700">
+            Number: <span className="font-medium">923448292001</span>
+            <button
+              onClick={() => copyToClipboard("923448292001", "Easypaisa")}
+              className="ml-2 text-sm text-blue-600 hover:underline"
+            >
+              Copy
+            </button>
+          </p>
           <p className="text-gray-500 text-sm">Send via Easypaisa app or mobile account.</p>
         </div>
 
         <div className="pt-4 border-t border-gray-200">
           <h2 className="text-md text-gray-700">📩 Contact Email:</h2>
-          <p className="text-indigo-600 font-medium">fymotools@gmail.com</p>
+          <p className="text-indigo-600 font-medium">
+            fymotools@gmail.com
+            <button
+              onClick={() => copyToClipboard("fymotools@gmail.com", "Email")}
+              className="ml-2 text-sm text-blue-600 hover:underline"
+            >
+              Copy
+            </button>
+          </p>
         </div>
       </div>
+
+      {copied && (
+        <div className="text-center mt-4 text-green-600 font-medium animate-bounce">
+          {copied} copied to clipboard ✅
+        </div>
+      )}
 
       <p className="text-center mt-8 text-sm text-gray-500">
         Thank you for supporting Fymo Tools. Every rupee counts. 🙏
