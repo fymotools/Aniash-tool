@@ -1,0 +1,20 @@
+# Allow all search engines to crawl everything
+User-agent: *
+Disallow:
+
+# Crawl-delay for slower bots (optional)
+# Crawl-delay: 5
+
+# Sitemap location
+Sitemap: https://fymo-tools.vercel.app/sitemap.xml
+
+# Host info (optional but good)
+Host: https://fymo-tools.vercel.app
+
+# Block specific bots (optional - only if needed)
+# User-agent: BadBot
+# Disallow: /
+
+# Custom rules (optional)
+# Allow: /images/
+# Disallow: /private/
