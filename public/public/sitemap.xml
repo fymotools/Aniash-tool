@@ -2,7 +2,10 @@
 <urlset 
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
+  <User-agent: *
+Allow: /
+Sitemap: https://fymotools.github.io/Aniash-tool/sitemap.xml
+>
   <url>
     <loc>https://fymo-tools.vercel.app/</loc>
     <priority>1.00</priority>
