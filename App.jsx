@@ -50,5 +50,26 @@ const App = () => {
     </LanguageProvider>
   );
 };
+import CookieConsent from "react-cookie-consent";
+
+function App() {
+  return (
+    <>
+      {/* ... your header, routes, footer ... */}
+
+      <CookieConsent
+        location="bottom"
+        buttonText="I Accept"
+        cookieName="fymoCookieConsent"
+        style={{ background: "#2B373B" }}
+        buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+        expires={150}
+      >
+        This website uses cookies to enhance the user experience. We use Google Analytics and AdSense.{" "}
+        <a href="/privacy-policy" className="underline text-blue-300">Read more</a>
+      </CookieConsent>
+    </>
+  );
+}
 
 export default App;
