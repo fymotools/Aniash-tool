@@ -7,29 +7,29 @@ const Header = () => {
 
   const navItems = {
     en: ["Home", "Tools", "Blog", "Donate", "Contact", "About"],
-    es: ["Inicio", "Herramientas", "Blog", "Donar", "Contacto", "Sobre"],
+    es: ["Inicio", "Herramientas", "Blog", "Donar", "Contacto", "Acerca de"],
   };
 
-  const links = ["/", "/health-tools", "/blog", "/donate", "/contact", "/about"];
-
   return (
-    <header className="bg-indigo-700 text-white shadow-md">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
-        <h1 className="text-xl font-bold">
-          <Link to="/">Fymo Tools</Link>
-        </h1>
+    <header className="bg-white shadow-md py-4 sticky top-0 z-50">
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        <Link to="/" className="flex items-center">
+          <img src="/logo.png" alt="Fymo Logo" className="h-10 mr-2 rounded-xl" />
+          <span className="text-xl font-bold text-indigo-700">Fymo Tools</span>
+        </Link>
 
-        <nav className="hidden md:flex gap-4 text-sm">
-          {navItems[language].map((item, i) => (
-            <Link key={i} to={links[i]} className="hover:underline">
-              {item}
-            </Link>
-          ))}
+        <nav className="space-x-4 hidden md:flex">
+          <Link to="/" className="text-gray-700 hover:text-indigo-600">{navItems[language][0]}</Link>
+          <Link to="/health-tools" className="text-gray-700 hover:text-indigo-600">{navItems[language][1]}</Link>
+          <Link to="/blog" className="text-gray-700 hover:text-indigo-600">{navItems[language][2]}</Link>
+          <Link to="/donate" className="text-gray-700 hover:text-indigo-600">{navItems[language][3]}</Link>
+          <Link to="/contact" className="text-gray-700 hover:text-indigo-600">{navItems[language][4]}</Link>
+          <Link to="/about" className="text-gray-700 hover:text-indigo-600">{navItems[language][5]}</Link>
         </nav>
 
         <button
           onClick={toggleLanguage}
-          className="bg-white text-indigo-700 px-2 py-1 rounded text-sm"
+          className="text-sm bg-indigo-600 text-white px-3 py-1 rounded-md hover:bg-indigo-700"
         >
           {language === "en" ? "ES" : "EN"}
         </button>
